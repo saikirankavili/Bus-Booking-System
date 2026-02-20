@@ -47,7 +47,6 @@ def payment(amount):
     print("2. Card")
     print("3. UPI")
     choice = int(input("Enter your choice: "))
-
     if choice == 1:
         given = float(input(f"Your bill is Rs.{amount}. Enter cash given: "))
         if given < amount:
@@ -58,18 +57,15 @@ def payment(amount):
             if change > 0:
                 print(f"Please collect your change: Rs.{change:.2f}")
             print("THANK YOU for booking with us!\n")
-
     elif choice == 2:
         pin = input("Swipe your card and enter PIN: ")
         print(f"Payment of Rs.{amount} received via CARD.")
         print("THANK YOU for booking with us!\n")
-
     elif choice == 3:
         upi_id = input("Enter your UPI ID (e.g., name@upi): ")
         print(f"Payment request sent to {upi_id}.")
         print(f"Payment of Rs.{amount} received via UPI.")
         print("THANK YOU for booking with us!\n")
-
     else:
         print("Invalid payment option.")
 
@@ -79,14 +75,11 @@ def bookTicket(buses):
     for bus in buses:
         print(f"{bus.busNumber}, Start: {bus.source}, End: {bus.destination}, "
               f"Seats: {bus.totalSeats}, Available: {bus.availableSeats}, Fare: {bus.fare}")
-
     busNumber = int(input("\nEnter Bus Number: "))
     bus = next((b for b in buses if b.busNumber == busNumber), None)
-
     if not bus:
         print(f"Bus with Bus Number {busNumber} not found.")
         return
-
     seatsToBook = int(input("Enter Number of Seats: "))
     if bus.availableSeats < seatsToBook:
         print(f"Sorry, only {bus.availableSeats} seats are available.")
@@ -101,14 +94,11 @@ def bookTicket(buses):
 def cancelTicket(buses):
     busNumber = int(input("\nEnter Bus Number: "))
     bus = next((b for b in buses if b.busNumber == busNumber), None)
-
     if not bus:
         print(f"Bus with Bus Number {busNumber} not found.")
         return
-
     seatsToCancel = int(input("Enter Number of Seats to Cancel: "))
     bookedSeats = bus.totalSeats - bus.availableSeats
-
     if seatsToCancel > bookedSeats:
         print("Error: You can't cancel more seats than were booked.")
     else:
@@ -122,7 +112,6 @@ def cancelTicket(buses):
 def checkBusStatus(buses):
     busNumber = int(input("\nEnter Bus Number: "))
     bus = next((b for b in buses if b.busNumber == busNumber), None)
-
     if bus:
         print(f"\nBus Number: {bus.busNumber}")
         print(f"Source: {bus.source}")
@@ -140,16 +129,13 @@ def main():
     print("|       BOOKING SYSTEM          |")
     print("|     DESIGNED BY Sai Kiran     |")
     print(" ================================")
-
     users = [User("sai", "35689")]
     buses = [
         Bus(101, "Chennai", "Nellore", 50, 50, 500.0),
         Bus(102, "Kerala", "Karnataka", 40, 40, 400.0),
         Bus(103, "Gudur", "Chennai", 30, 30, 300.0)
     ]
-
     loggedInUserId = -1
-
     while True:
         if loggedInUserId == -1:
             choice = displayMainMenu()
